@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title>覗き見.eth</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="keywords" content="blockchain, web3.0, dex">
-        <script src="./assets/abi.js"></script>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,7 +13,6 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 		<link rel="stylesheet" href="./assets/style.css">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-		
 	</head>
 	
 	<body class="grey darken-4">
@@ -27,18 +26,50 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-2"></div>
-				<div class="col-8 col-sm-12">
+				<div class="col-md-2"></div>
+				<div class="col-md-8 col-sm-12">
 					<div class="mt-2 grey lighten-4 rounded-3 z-depth-5 container">
 						<div class="row"></div>
 						<div class="row pt-3">
 							<div class="col-1"></div>
-							<div class="input-field col s6">
-								<i class="material-icons prefix">account_balance_wallet</i>
-								<input id="walletAddress" type="text" class="walletaddr">
-								<label for="walletAddress">ウォレットアドレス</label>
-							</div>
-							<button class="btn waves-effect waves-light nozoku grey darken-4 col-2 text-white"><i class="material-icons">remove_red_eye</i></button>
+							<form class="col-10" onsubmit="return false;">
+								<div class="input-field">
+									<i class="material-icons prefix">account_balance_wallet</i>
+									<input id="walletAddress" type="text" required class="walletaddr">
+									<label for="walletAddress">ウォレットアドレス</label>
+								</div>
+								<p>
+									<label>
+										<input type="checkbox" class="filled-in check ERC20"/>
+										<span>【βeta】ERC20, BEP20, etc.</span>
+									</label>
+								</p>
+								<div class="form ERC20">
+									<div class="input-field">
+										<i class="material-icons prefix">assignment</i>
+										<input id="tokenSymb" type="text" required class="tokenSymb">
+										<label for="tokenSymb">トークン名</label>
+									</div>
+									<div class="input-field">
+										<i class="material-icons prefix">attach_money</i>
+										<input id="tokenAddr" required type="text" class="tokenAddr">
+										<label for="tokenAddr">トークンアドレス</label>
+									</div>
+									<div class="input-field">
+										<i class="material-icons prefix">account_balance</i>
+										<select required>
+											<option value="" disabled selected>チェーンを選択</option>
+											<option value="eth">eth</option>
+											<option value="bnb">bnb</option>
+											<option value="matic">matic</option>
+										</select>
+										<label>トークンのチェーン</label>
+									</div>
+								</div>
+								<center>
+									<button type="submit" class="btn waves-effect waves-light nozoku grey darken-4 col-2 text-white mb-4"><i class="material-icons">remove_red_eye</i></button>
+								</center>
+							</form>
 							<div class="col-1"></div>
 						</div>
 					</div>
@@ -46,39 +77,54 @@
 				<div class="col-2"></div>
 			</div>
 
-			<div class="row">
-				<div class="col-2"></div>
-				<div class="col-8 col-sm-12">
+			<div class="row under">
+				<div class="col-md-2"></div>
+				<div class="col-md-8 col-sm-12">
 					<div class="mt-2 grey lighten-4 rounded-3 z-depth-5 container">
 						<div class="row">
 							<h2 class="mx-3 mt-3">
-								result
+								結果
 							</h2>
-						</div>
-						<div class="row">
-							<div class="col-1"></div>
-								<h3>保有ETH:<span class="result eth">00</span>Eth</h3>
-								<p class="jpy eth"><span class="result">0000</span>円</p>
-								<h3>保有BNB:<span class="result bnb">00</span>BNB</h3>
-								<p class="jpy bnb"><span class="result">0000</span>円</p>
-								<h3>保有polygon:<span class="result matic">00</span>MATIC</h3>
-								<p class="jpy matic"><span class="result">0000</span>円</p>
-								<h3>指定トークン:<span class="result erc20">00</span>pt</h3>
-								<p class="jpy erc20"><span class="result">0000</span>円</p>
-							<div class="col-1"></div>
+							<div class="result">
+								<center>
+									<div class="preloader-wrapper big active mb-5">
+										<div class="spinner-layer spinner-blue-only">
+											<div class="circle-clipper left">
+												<div class="circle"></div>
+											</div><div class="gap-patch">
+												<div class="circle"></div>
+											</div><div class="circle-clipper right">
+												<div class="circle"></div>
+											</div>
+										</div>
+									</div>
+								</center>
 						</div>
 					</div>
 				</div>
-				<div class="col-2"></div>
+				<div class="col-md-2"></div>
 			</div>
 		</div>
-
 		
-			
+		<center>
+			<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		<div class="mt-1">
+			<p class="py-2">
+				<span class="white-text fw-bold">
+					お問い合わせ<br>
+				</span>
+				<a href="https://twitter.com/kaitoBlockchain">
+					@kaitoBlockchain(制作者のtwitter)</a>
+			</p>
+		</div>
+		</center>
+
+		<script src="./assets/abi.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 		<script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="./assets/app.js"></script>
+		<script src="./assets/validate.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	</body>
-</html>
+	</html>
